@@ -1,0 +1,92 @@
+:root {
+  /* color */
+  /* 단순히 나눈 것을 구분하기 위해 색깔을 넣었습니다. */
+  --header-color: #a7ffeb;
+  --main-color: #84ffff;
+  --sidebar-color: #18ffff;
+  --footer-color: #1de9b6;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 0.2fr 3.8fr;
+  grid-template-rows: 0.4fr 2.8fr 0.8fr;
+  grid-template-areas: 
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+}
+
+.container.active {
+  grid-template-columns: 0.6fr 3.4fr;
+}
+
+header {
+  background: var(--header-color);
+  grid-area: header;
+}
+
+main {
+  background: var(--main-color);
+  grid-area: main;
+}
+
+#sidebar {
+  background: var(--sidebar-color);
+  grid-area: sidebar;
+}
+
+footer {
+  background: var(--footer-color);
+  grid-area: footer;
+}
+
+
+/* 미디어 쿼리 적용 */
+@media (max-width: 767px){
+	/* 모바일 */
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 0.4fr 2.0fr 1.2fr;
+    grid-template-areas: 
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /* 테블릿 세로 */
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 0.4fr 2.0fr 1.2fr;
+    grid-template-areas: 
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* 테블릿 가로 */
+  .container {
+    grid-template-columns: 0.3fr 3.7fr;
+  }
+
+  .container.active {
+    grid-template-columns: 0.9fr 3.1fr;
+  }
+}
+
+/* @media only screen and (max-width: 550px) {
+  
+} */
