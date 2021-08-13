@@ -1,4 +1,4 @@
-const container = document.querySelector('.container');
+const container = document.getElementById('container');
 const bars = document.getElementById('bars');
 
 bars.onclick = () => {

@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+}
+
+#bars {
+  margin-right: 1rem;
+}
+
+#search_btn {
+  background: #ee9ca7;
+  color: white;
+}
+
+#menu {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0;
+  /* border: 1px solid black; */
+}
+
+#menu li {
+  padding: 1rem;
+}
+
+
+
