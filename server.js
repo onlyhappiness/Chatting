@@ -1,18 +1,12 @@
-// express
-const express = require('express');
-const app = express();
+const express = require('express');         // express
+const members = require('./members')
 const path = require('path');
+const bcrypt = require('bcrypt-nodejs');
+const session = require('express-session');
 
-// body-parser
-const bodyParser = require('body-parser');
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.json());
-
-// mysql 연동
-const mysql = require('mysql');
+const app = express();
+const mysql = require('mysql');     // mysql 연동
+const bodyParser = require('body-parser');    // body-parser
 const con = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -20,44 +14,35 @@ const con = mysql.createConnection({
   database: 'dbs'
 });
 
-//  mysql에 연결
-con.connect((err) => {
+con.connect((err) => {    //  mysql에 연결
   if (err) throw err;
   console.log('Mysql Connected!!');
 });
 
+global.db = con;
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyParser.json());
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 3600000 * 24 * 90 }
+}));
 
 // express에서 css 적용
-app.use('/css', express.static(__dirname + '/client/css/'));
 // app.use('/css', express.static('./static/css'));
+app.use('/css', express.static(__dirname + '/client/css/'));
 
-// 처음 페이지는 로그인 페이지로 이동
-app.get('/', (req,res) => {
-  console.log('유저가 login page에 접속하였습니다!')
-  res.sendFile(path.join(__dirname + '/client/views/login/index.html'))
-});
+app.get('/', members.landing);
+app.get('/signup', members.signup);
+//app.get('/login', members.login);
 
-// 회원 가입 route
-app.get('/join', (req,res) => {
-  console.log('유저가 join page에 접속하였습니다!')
-  res.sendFile(path.join(__dirname + '/client/views/join/index.html'))
-});
-
-app.post('/join', (req, res, next) => {
-  const body = req.body;
-  const id = body.id;
-  const email = body.email;
-  const password =  body.password;
-
-  con.query('insert into members (id, email, password) values (?,?,?)', [id, email, password], (err, rows, fields) => {
-    if (!err) {
-      res.send('successs');
-    } else {
-      res.send('err' + err);
-    }
-  });
-});
-
+app.post('/signup', members.signup);
+//app.post('/login', members.login);
 
 // port
 const port = 5500;

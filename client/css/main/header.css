@@ -7,6 +7,11 @@
   transition: all 0.5s ease;
 }
 
+.header i {
+  font-size: 18px;
+  padding: 30px;
+}
+
 #menu {
   display: flex;
   justify-content: flex-end;
@@ -14,7 +19,6 @@
   width: 100%;
 }
 
-#menu li {
-  padding: 30px;
-}
-
+/* #menu li {
+  
+} */

@@ -90,6 +90,10 @@
     width: 100%;
     left: 0;
   }
+
+  .nav_list {
+    width: 100%;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
