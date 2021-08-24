@@ -32,11 +32,13 @@
 
   <!-- css -->
   <link rel="stylesheet" href="../../css/main/header.css">
+  <link rel="stylesheet" href="../../css/main/main.css">
   <link rel="stylesheet" href="../../css/main/style.css">
   <link rel="stylesheet" href="../../css/main/sidebar.css">
 
   <!-- js -->
   <script src="../../js/main/sidebar.js" defer></script>  
+  <script src="../../js/main/clock.js" defer></script>
 </head>
 <body>
   <div id="container">
@@ -133,8 +135,23 @@
       </header>
 
       <!-- Main -->
-      <main id="main">
-        main
+      <main class="contents" id="contents">
+        <div class="hello" id="hello">
+          <h1 class="bow">Hello~</h1>
+          <h2 class="nickname">Somebody</h2>
+        </div>
+        
+        <div class="weather" id="weather">
+          weather
+        </div>
+        
+        <div class="time" id="time">
+          <h2 class="clock" id="clock">00:00:00</h2>
+        </div>
+        
+        <div class="calendar" id="calendar">Calendar</div>
+        
+        <div class="todo" id="todo">TodoList</div>
       </main>
 
     <!-- footer -->

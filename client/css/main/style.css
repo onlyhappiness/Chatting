@@ -1,15 +1,21 @@
 :root {
-  /* color */
   /* 단순히 나눈 것을 구분하기 위해 색깔을 넣었습니다. */
-  --header-color: #ffffff;
-  --main-color: #F0F2F9;
+  /* color */
+  --body-color: #F3F7FA;
   --sidebar-color: #11101d;
+
+  /* --header-color: #ffffff; */
+  /* --main-color: #F0F2F9; */
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body {
+  background: var(--body-color);
 }
 
 #sidebar {
