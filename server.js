@@ -35,7 +35,9 @@ app.use(session({
 
 // express에서 css 적용
 // app.use('/css', express.static('./static/css'));
-app.use('/css', express.static(__dirname + '/client/css/'));
+app.use('/css', express.static(__dirname + '/client/views/login/css'));
+app.use('/css', express.static(__dirname + '/client/views/main/css'));
+app.use('/css', express.static(__dirname + '/client/views/signup/css'));
 
 app.get('/', members.landing);
 app.get('/signup', members.signup);
