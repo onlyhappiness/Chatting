@@ -11,12 +11,13 @@ exports.signup = (req, res) => {
   if(req.method == 'POST') {
     const id = req.body.id;
     const email = req.body.email;
+    const nickname = req.body.nickname;
     const password1 = req.body.password1;
     const password2 = req.body.password2;
 
-    const sql = 'insert into members (id, email, password1, password2) values (?, ?, ?, ?)';
+    const sql = 'insert into members (id, email, nickname, password1, password2) values (?, ?, ?, ?, ?)';
 
-    const params = [id, email, password1, password2];
+    const params = [id, email, nickname, password1, password2];
 
     const query = db.query(sql, params, (err, result) => {
       if (err) {
@@ -49,6 +50,8 @@ exports.signup = (req, res) => {
 }
 
 // 로그인 route
-// app.get('/login', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/client/views/login/index.html'))
-// })
+// exports.login = (req, res) => {
+//   if(req.method == 'POST') {
+    
+//   }
+// }

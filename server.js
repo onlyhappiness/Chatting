@@ -1,29 +1,30 @@
 const express = require('express');         // express
-const bcrypt = require('bcrypt-nodejs');
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 
-const app = express();
-const mysql = require('mysql');     // mysql 연동
 const bodyParser = require('body-parser');    // body-parser
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
+const bcrypt = require('bcrypt-nodejs');
+
+const mysql = require('mysql');     // mysql 연동
 const con = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '1234',
   database: 'dbs'
 });
-
 con.connect((err) => {    //  mysql에 연결
   if (err) throw err;
   console.log('Mysql Connected!!');
 });
 
-// global.db = con;
+const app = express();
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use(session({
   secret: 'secret',
   resave: false,

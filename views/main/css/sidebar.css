@@ -1,6 +1,12 @@
 :root {
   /* color */
   --search-color: #1d1b31;
+
+   /* color */
+   --contents-color: #F2DFE6;
+
+   /* Border */
+   --contents-radius: 15px;
 }
 
 * {
@@ -114,6 +120,7 @@ body {
   transition: all 0.5s ease;
   opacity: 1;
   top: 50%;
+  z-index: 100;
 }
 
 .search {
@@ -178,3 +185,19 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
