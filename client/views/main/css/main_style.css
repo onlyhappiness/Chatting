@@ -18,11 +18,11 @@ body {
   background: var(--body-color);
 }
 
-.sidebar {
+#sidebar {
   background: var(--sidebar-color);
 }
 
-.container {
+.header_main {
   position: absolute;
   top: 0;
   left: 78px;
@@ -34,7 +34,7 @@ body {
   transition: all 0.5s ease;
 }
 
-.bars {
+#bars {
   padding: 30px;
   font-size: 20px;
 }
@@ -43,7 +43,7 @@ body {
   
 } */
 
-.sidebar.active ~ .container {
+.sidebar.active ~ .header_main {
   width: calc(100% - 240px);
   left: 240px;
 }
@@ -51,23 +51,23 @@ body {
 /* 미디어 쿼리 적용 */
 @media (max-width: 767px){
 	/* 모바일 */
-  .sidebar {
+  #sidebar {
     display: none;
   }
 
-  .container {
+  .header_main {
     top: 0;
     left: 0;
     width: 100%;
   }
 
-  .root.active .sidebar {
+  #container.active #sidebar {
     z-index: 1;
     display: flex;
     top: 10%;
   }
 
-  .sidebar.active ~ .container {
+  .sidebar.active ~ .header_main {
     width: 100%;
     left: 0;
   }
@@ -76,23 +76,23 @@ body {
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* 테블릿 세로 */
-  .sidebar {
+  #sidebar {
     display: none;
   }
 
-  .container {
+  .header_main {
     top: 0;
     left: 0;
     width: 100%;
   }
 
-  .root.active .sidebar {
+  #container.active #sidebar {
     z-index: 1;
     display: flex;
     top: 10%;
 }
 
-  .sidebar.active ~ .container {
+  .sidebar.active ~ .header_main {
     width: 100%;
     left: 0;
   }

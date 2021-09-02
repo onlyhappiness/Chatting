@@ -12,7 +12,7 @@
   padding: 30px;
 }
 
-.menu {
+#menu {
   display: flex;
   justify-content: flex-end;
   list-style: none;
