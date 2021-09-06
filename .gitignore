@@ -1,6 +1,6 @@
-# 용량...
+# 용량
 node_modules
 
 # aws
-./config/dev.js
+dev.js
 
