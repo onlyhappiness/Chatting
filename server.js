@@ -15,7 +15,7 @@ const bkfd2Password = require("pbkdf2-password");
 const hasher = bkfd2Password();
 
 // aws
-const config = require('./config/dev');
+const config = require('./dev');
 
 const mysql = require('mysql');     // mysql 연동
 const con = mysql.createConnection({
@@ -75,7 +75,7 @@ app.get("/logout", function (req, res) {
 ///////////////////////////////// landing page /////////////////////////////////
 app.get('/', (req, res) => {
   if (req.user && req.user.displayName) {
-    res.render('main/index.html');
+    res.render('main/index.html',{displayName: req.user.displayName});
   } else {
     res.redirect('/login');
   }
