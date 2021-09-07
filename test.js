@@ -45,6 +45,22 @@ app.set('views', __dirname + '/client/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
+app.set('views', __dirname + '/client/views/');
+// html을 ejs로 변환
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+// express에서 css 적용
+app.use('/auth/css', express.static(__dirname + '/client/views/login/css/'));
+app.use('/auth/css', express.static(__dirname + '/client/views/main/css/'));
+app.use('/auth/css', express.static(__dirname + '/client/views/register/css/'));
+
+// js 적용
+app.use('/auth/js', express.static(__dirname + '/client/views/login/js'));
+app.use('/auth/js', express.static(__dirname + '/client/views/main/js'));
+app.use('/auth/js', express.static(__dirname + '/client/views/register/js'));
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -58,10 +74,11 @@ app.get("/auth/logout", function (req, res) {
 app.get("/welcome", function (req, res) {
   if (req.user && req.user.displayName) {
     // res.render('main/index.html');
-    res.send(`
-      <h1>Hello, ${req.user.displayName}</h1>
-      <a href="/auth/logout">logout</a>
-    `);
+    // res.send(`
+    //   <h1>Hello, ${req.user.displayName}</h1>
+    //   <a href="/auth/logout">logout</a>
+    // `);
+    res.render('main/index.html', { displayName: req.user.displayName});
   } else {
     res.redirect('/auth/login')
   }

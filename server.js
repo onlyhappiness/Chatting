@@ -51,33 +51,40 @@ app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
 // express에서 css 적용
-app.use('/css', express.static(__dirname + '/client/views/login/css/'));
+app.use('/auth/css', express.static(__dirname + '/client/views/login/css/'));
 app.use('/css', express.static(__dirname + '/client/views/main/css/'));
-app.use('/css', express.static(__dirname + '/client/views/register/css/'));
+app.use('/auth/css', express.static(__dirname + '/client/views/register/css/'));
 
 // js 적용
-app.use('/js', express.static(__dirname + '/client/views/login/js'));
+app.use('/auth/js', express.static(__dirname + '/client/views/login/js'));
 app.use('/js', express.static(__dirname + '/client/views/main/js'));
-app.use('/js', express.static(__dirname + '/client/views/register/js'));
+app.use('/auth/js', express.static(__dirname + '/client/views/register/js'));
 
 ///////////////////////////////// passport 설정 /////////////////////////////////
 app.use(passport.initialize());
 app.use(passport.session());
 
 ///////////////////////////////// logout /////////////////////////////////
-app.get("/logout", function (req, res) {
+app.get("/auth/logout", (req, res) => {
   req.logout();
-  req.session.save(function () {
-    res.redirect("/");
+  req.session.save(() => {
+    res.redirect("/auth/login");
   });
 });
 
+app.get("/welcome", function (req, res) {
+  if (req.user && req.user.displayName) {
+    res.render('main/index.html', { displayName: req.user.displayName});
+  } else {
+    res.redirect('/auth/login')
+  }
+});
 ///////////////////////////////// landing page /////////////////////////////////
 app.get('/', (req, res) => {
   if (req.user && req.user.displayName) {
     res.render('main/index.html',{displayName: req.user.displayName});
   } else {
-    res.redirect('/login');
+    res.redirect('/auth/login');
   }
 });
 
@@ -130,24 +137,17 @@ passport.use(
 );
 
 //////////////////////////////////////// 로그인 /////////////////////////////////////////
-app.get('/login', (req, res) => {
-  console.log('로그인 페이지로 이동합니다.');
-  res.render('login/index.html');
-});
 
-app.post('/login', passport.authenticate("local", {
-  successRedirect: "/welcome",
-  failureRedirect: "/login",
-  failureFlash: false,
-}));
+app.post("/auth/login", passport.authenticate("local", {
+    successRedirect: "/welcome",
+    failureRedirect: "/auth/login",
+    failureFlash: false,
+  })
+);
 
 //////////////////////////////////////// 회원 가입 /////////////////////////////////////////
-app.get('/register', (req, res) => {
-  console.log('회원 가입 페이지에 접속합니다.');
-  res.render('register/index.html');
-});
 
-app.post('/register', (req, res) => {
+app.post('/auth/register', (req, res) => {
   hasher(
     { password: req.body.password },
     function (err, pass, salt, hash) {
@@ -177,6 +177,17 @@ app.post('/register', (req, res) => {
       );
     }
   );
+});
+
+
+app.get('/auth/login', (req, res) => {
+  console.log('로그인 페이지로 이동합니다.');
+  res.render('login/index.html');
+});
+
+app.get('/auth/register', (req, res) => {
+  console.log('회원 가입 페이지에 접속합니다.');
+  res.render('register/index.html');
 });
 
 //////////////////////////////////// port ////////////////////////////////
