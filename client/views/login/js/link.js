@@ -1,5 +1,5 @@
 function gopage() {
-  location.href = '../../signup/index.html';
+  location.href = '/register';
 }
 
 

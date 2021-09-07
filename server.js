@@ -53,12 +53,12 @@ app.engine('html', require('ejs').renderFile);
 // express에서 css 적용
 app.use('/css', express.static(__dirname + '/client/views/login/css/'));
 app.use('/css', express.static(__dirname + '/client/views/main/css/'));
-app.use('/css', express.static(__dirname + '/client/views/signup/css/'));
+app.use('/css', express.static(__dirname + '/client/views/register/css/'));
 
 // js 적용
 app.use('/js', express.static(__dirname + '/client/views/login/js'));
 app.use('/js', express.static(__dirname + '/client/views/main/js'));
-app.use('/js', express.static(__dirname + '/client/views/signup/js'));
+app.use('/js', express.static(__dirname + '/client/views/register/js'));
 
 ///////////////////////////////// passport 설정 /////////////////////////////////
 app.use(passport.initialize());
