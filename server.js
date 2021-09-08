@@ -54,6 +54,7 @@ app.engine('html', require('ejs').renderFile);
 app.use('/auth/css', express.static(__dirname + '/client/views/login/css/'));
 app.use('/css', express.static(__dirname + '/client/views/main/css/'));
 app.use('/auth/css', express.static(__dirname + '/client/views/register/css/'));
+app.use('/css', express.static(__dirname + '/client/views/userlist/css'));
 
 // js 적용
 app.use('/auth/js', express.static(__dirname + '/client/views/login/js'));
@@ -157,6 +158,7 @@ app.post('/auth/register', (req, res) => {
         password: hash,
         salt: salt,
         displayName: req.body.displayName,
+        email: req.body.email
       };
       const sql = "INSERT INTO users SET ?";
       con.query(
@@ -179,7 +181,6 @@ app.post('/auth/register', (req, res) => {
   );
 });
 
-
 app.get('/auth/login', (req, res) => {
   console.log('로그인 페이지로 이동합니다.');
   res.render('login/index.html');
@@ -190,6 +191,16 @@ app.get('/auth/register', (req, res) => {
   res.render('register/index.html');
 });
 
+app.get('/userlist', (req, res) => {
+  console.log('유저리스트로 이동합니다.');
+  res.render('userlist/index.html', {displayName: req.user.displayName, email: req.user.email});
+});
+
+app.get('/chat', (req, res) => {
+  console.log('챗으로 이동합니다.')
+  res.render('chat/index.html')
+})
 //////////////////////////////////// port ////////////////////////////////
 const port = 5500;
 app.listen(port, () => console.log(`listening on ${port}!!`));
+
