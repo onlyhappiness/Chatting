@@ -3,10 +3,10 @@
   --search-color: #1d1b31;
 
    /* color */
-   --contents-color: #F2DFE6;
+    --contents-color: #F2DFE6;
 
    /* Border */
-   --contents-radius: 15px;
+    --contents-radius: 15px;
 }
 
 * {

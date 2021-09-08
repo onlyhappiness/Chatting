@@ -1,8 +1,8 @@
-const container = document.getElementById('container');
+const root = document.getElementById('root');
 const bars = document.getElementById('bars');
 const sidebar = document.getElementById('sidebar')
 
 bars.onclick = () => {
-  container.classList.toggle('active');
+  root.classList.toggle('active');
   sidebar.classList.toggle('active');
 }

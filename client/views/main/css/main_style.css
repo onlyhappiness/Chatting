@@ -22,7 +22,7 @@ body {
   background: var(--sidebar-color);
 }
 
-.header_main {
+#container {
   position: absolute;
   top: 0;
   left: 78px;
@@ -43,7 +43,7 @@ body {
   
 } */
 
-.sidebar.active ~ .header_main {
+.sidebar.active ~ #container {
   width: calc(100% - 240px);
   left: 240px;
 }
@@ -55,19 +55,19 @@ body {
     display: none;
   }
 
-  .header_main {
+  #container {
     top: 0;
     left: 0;
     width: 100%;
   }
 
-  #container.active #sidebar {
+  #root.active #sidebar {
     z-index: 1;
     display: flex;
     top: 10%;
   }
 
-  .sidebar.active ~ .header_main {
+  .sidebar.active ~ #container {
     width: 100%;
     left: 0;
   }
@@ -80,19 +80,19 @@ body {
     display: none;
   }
 
-  .header_main {
+  #container {
     top: 0;
     left: 0;
     width: 100%;
   }
 
-  #container.active #sidebar {
+  #root.active #sidebar {
     z-index: 1;
     display: flex;
     top: 10%;
 }
 
-  .sidebar.active ~ .header_main {
+  .sidebar.active ~ #container {
     width: 100%;
     left: 0;
   }

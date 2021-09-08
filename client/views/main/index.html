@@ -41,14 +41,13 @@
   <script src="./js/sidebar.js" defer></script>
 </head>
 <body>
-  <div id="container">
+  <div id="root">
     <!-- sidebar -->
     <div class="sidebar" id="sidebar">
       <div class="logo_content">
         <div class="logo">
           <!-- <div class="logo_name">로고 이름</div> -->
         </div>
-        
       </div>
 
       <ul class="nav_list" id="nav_list">
@@ -57,7 +56,6 @@
           <input type="text" placeholder="Search..." class="search">
           <span class="tooltip">Search</span>
         </li>
-
 
         <li class="side_items" id="">
           <a href="#">
@@ -110,13 +108,18 @@
           <span class="tooltip">Additional</span>
         </li>
 
-        <li>
-          <a href="/auth/logout">Logout</a>
+        <li class="side_items" id ="">
+          <a href="/auth/logout">
+            <i class="fas fa-door-open"></i>
+            <span class="links_name">
+              Logout</span>
+          </a>
+          <span class="tooltip">logout</span>
         </li>
       </ul>
     </div>
     
-    <div class="header_main">
+    <div class="container" id="container">
       <!-- header -->
       <header id="header" class="header">
         <i class="fas fa-bars bars" id="bars"></i>
@@ -161,7 +164,7 @@
     <!-- footer -->
     <!-- <footer>Footer</footer> -->
     </div>
-    
   </div>
+
 </body>
 </html>
