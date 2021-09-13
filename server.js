@@ -1,4 +1,6 @@
 const express = require('express');                  // express 서버
+const http = require('http');
+const fs = require('fs');
 const session = require('express-session');          // express 서버 세션
 const MySQLStore = require('express-mysql-session')(session);  
 
@@ -9,15 +11,13 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 // 회원 비밀번호 암호화
-//const bcrypt = require('bcrypt-nodejs');
-
 const bkfd2Password = require("pbkdf2-password");
 const hasher = bkfd2Password();
 
 // aws
 const config = require('./dev');
-
 const mysql = require('mysql');     // mysql 연동
+const { response } = require('express');
 const con = mysql.createConnection({
   host: config.host,
   user: config.user,
@@ -30,6 +30,14 @@ con.connect((err) => {    //  mysql에 연결
 });
 
 const app = express();
+
+//////////////////////////////////// port ////////////////////////////////
+const port = 5500;
+const server = http.createServer(app);
+//app.listen(port, () => console.log(`listening on ${port}!!`));
+
+const io = require('socket.io')(server);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({   // 세션 
@@ -79,6 +87,26 @@ app.get("/welcome", function (req, res) {
   } else {
     res.redirect('/auth/login')
   }
+
+  let socketConnected = new Set();
+
+
+  io.on('connection', (socket) => {
+    socketConnected.add(socket.id);
+
+    io.emit('clients-total', socketConnected.size);
+
+    socket.on('disconnect', () => {
+      console.log('Socket disconnected', socket);
+      socketConnected.delete(socket.id);
+      io.emit('clients-total', socketConnected.size);
+    });
+
+    socket.on('message', (data) => {
+      console.log(data);
+      socket.broadcast.emit('chat-message', data);
+    });
+  });
 });
 ///////////////////////////////// landing page /////////////////////////////////
 app.get('/', (req, res) => {
@@ -138,8 +166,7 @@ passport.use(
 );
 
 //////////////////////////////////////// 로그인 /////////////////////////////////////////
-
-app.post("/auth/login", passport.authenticate("local", {
+app.post("/auth/login", passport.authenticate("local", {  
     successRedirect: "/welcome",
     failureRedirect: "/auth/login",
     failureFlash: false,
@@ -147,7 +174,6 @@ app.post("/auth/login", passport.authenticate("local", {
 );
 
 //////////////////////////////////////// 회원 가입 /////////////////////////////////////////
-
 app.post('/auth/register', (req, res) => {
   hasher(
     { password: req.body.password },
@@ -196,11 +222,7 @@ app.get('/userlist', (req, res) => {
   res.render('userlist/index.html', {displayName: req.user.displayName, email: req.user.email});
 });
 
-app.get('/chat', (req, res) => {
-  console.log('챗으로 이동합니다.')
-  res.render('chat/index.html')
-})
-//////////////////////////////////// port ////////////////////////////////
-const port = 5500;
-app.listen(port, () => console.log(`listening on ${port}!!`));
 
+server.listen(port, () => {
+  console.log(`listening on ${port}!!`);
+})
