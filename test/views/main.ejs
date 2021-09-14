@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatting</title>
+
+  <!-- bootstrap -->
+  
+  <!-- fontawesome / icon -->
+  <link 
+    rel="stylesheet" 
+    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" 
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" 
+    crossorigin="anonymous"
+  />
+
+  <!-- css -->
+  <link rel="stylesheet" href="./css/main/calendar.css">
+  <link rel="stylesheet" href="./css/main/chat.css">
+  <link rel="stylesheet" href="./css/main/header.css">
+  <link rel="stylesheet" href="./css/main/home.css">
+  <link rel="stylesheet" href="./css/main/main_style.css">
+  <link rel="stylesheet" href="./css/main/sidebar.css">
+
+  <!-- js -->
+  <script src="./js/calendar.js" defer></script>
+  <script src="./js/chat.js" defer></script>
+  <script src="./js/clock.js" defer></script>  
+  <script src="./js/sidebar.js" defer></script>
+  <script src="./js/tab.js" defer></script>
+  <script src="./js/weather.js" defer></script>
+</head>
+<body>
+  <div id="root">
+    <!-- sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="logo_content">
+        <div class="logo">
+          <!-- <div class="logo_name">로고 이름</div> -->
+        </div>
+      </div>
+
+      <ul class="nav_list" id="nav_list">
+        <li class="tablinks side_items">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search..." class="search">
+          <span class="tooltip">Search</span>
+        </li>
+
+        <li class="tablinks side_items" onclick="openItem(event, 'Home')" id="defaultOpen">
+          <a href="#">
+            <i class="fas fa-home"></i>
+            <span class="links_name">Home</span>
+          </a>
+          <span class="tooltip">Home</span>
+        </li>
+
+        <li class="tablinks side_items" onclick="openItem(event, 'User')">
+          <a href="#">
+            <i class="fas fa-user"></i>
+            <span class="links_name">User</span>
+          </a>
+          <span class="tooltip">User</span>
+        </li>
+  
+        <li class="tablinks side_items" onclick="openItem(event, 'Chat')">
+          <a href="#">
+            <i class="fas fa-comments"></i>
+            <span class="links_name">Chat</span>
+          </a>
+          <span class="tooltip">Chat</span>
+        </li>
+
+        <li class="tablinks side_items" onclick="openItem(event, 'Calendar')">
+          <a href="#">
+            <i class="far fa-calendar"></i>
+            <span class="links_name">Calendar</span>
+          </a>
+          <span class="tooltip">Calendar</span>
+        </li>
+        
+        <li class="tablinks side_items" onclick="openItem(event, 'List')">
+          <a href="#">
+            <i class="fas fa-clipboard-list"></i>
+            <span class="links_name">Lists</span>
+          </a>
+          <span class="tooltip">List</span>
+        </li>
+
+        <li class="tablinks side_items" onclick="openItem(event, 'Additional')">
+          <a href="#">
+            <i class="fas fa-ellipsis-h"></i>
+            <span class="links_name">Additional</span>
+          </a>
+          <span class="tooltip">Additional</span>
+        </li>
+
+        <li class="tablinks side_items">
+          <a href="/auth/logout">
+            <i class="fas fa-door-open"></i>
+            <span class="links_name">Logout</span>
+          </a>
+          <span class="tooltip">logout</span>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="container" id="container">
+      <!-- header -->
+      <header id="header" class="header">
+        <i class="fas fa-bars bars" id="bars"></i>
+
+        <div class="content"></div>
+
+        <ul id="menu">
+          <li>
+            <i class="far fa-bell"></i>
+          </li>
+          <li>
+            <i class="fas fa-grip-horizontal"></i>
+          </li>
+          <li>
+            <i class="fas fa-cog"></i>
+          </li>
+        </ul>
+      </header>
+
+      <!-- Main -->
+      <div class="contents tabcontent" id="Home">
+        <div class="hello" id="hello">
+          <h1 class="bow">Hello~</h1>
+          <h2 class="nickname"></h2>
+        </div>
+        
+        <div class="weather" id="weather">
+          <div class="app-title">
+            <p>Weather</p>
+          </div>
+          <div class="notification"></div>
+          <div class="weather-container">
+            <div class="weather-icon">
+              <img src="../images/unknown.png" alt="">
+            </div>
+      
+            <div class="temperature-value">
+              <p> - ° <span>C</span></p>
+            </div>
+            <div class="temperature-description">
+              <p> - clouds </p>
+            </div>
+            <div class="location">
+              <p> - seoul </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="time" id="time">
+          <h2 class="clock" id="clock">00:00:00</h2>
+        </div>
+        
+        <div class="calendar">
+          <div class="__calendar">
+            <div class="month">
+              <i class="fas fa-angle-left prev"></i>
+              <div class="date">
+                <h1></h1>
+                <p></p>
+              </div>
+              <i class="fas fa-angle-right next"></i>
+            </div>
+            <div class="weekdays"> 
+              <div>S</div>
+              <div>M</div>
+              <div>T</div>
+              <div>W</div>
+              <div>T</div>
+              <div>F</div>
+              <div>S</div>
+            </div>
+            <div class="days"></div>
+          </div>
+        </div>
+        
+        <div class="todo" id="todo">TodoList</div>
+      </div>
+
+
+      <div id="Chat" class="tabcontent">
+        <!-- <h1 class="title">chat</h1> -->
+        <div class="chat_main">
+          <div class="name">
+            <span><i class="fas fa-user"></i></span>
+            <!-- <input 
+              type="text" 
+              id="name-input" 
+              class="name-input" 
+              value="annoymous" 
+              maxlength="20"
+            /> -->
+            <p></p>
+          </div>
+
+          <ul class="message-container" id="message-container">
+          </ul>
+
+          <form class="message-form" id="message-form">
+            <input 
+              type="text" 
+              name="message" 
+              id="message-input" 
+              class="message-input" 
+            />
+            <div class="v-divider"></div>
+            <button class="send-button">
+              send <span><i class="fab fa-telegram-plane"></i></span>
+            </button>
+          </form>
+        </div>
+        <h3 class="client-total" id="client-total">
+          Total clients: 2
+        </h3>
+
+        <ul id="users"></ul>
+      </div>
+    <!-- footer -->
+    <!-- <footer>Footer</footer> -->
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- what is this cdn..? -->
+  <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" 
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer">
+  </script>
+</body>
+</html>
