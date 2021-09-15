@@ -1,9 +1,9 @@
-.calendar {
+/* .__calendar {
   width: 40rem;
   height: 52rem;
-  box-shadow: 0 0.5rem 3rem rgb(0 0 0 / 40%);
-  /* background: #F2DFE6; */
-}
+  box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+  background: #F2DFE6;
+} */
 
 .month {
   width: 100%;
@@ -84,6 +84,6 @@
 }
 
 .today {
-  background-color: #9A88FF;
+  background-color: #884aec;
   border-radius: 20px;
 }

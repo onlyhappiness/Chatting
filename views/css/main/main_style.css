@@ -32,7 +32,7 @@ body {
   align-items: center;
   width: calc(100% - 78px);
   transition: all 0.5s ease;
-  padding: 20px;
+
   /* background: 
     linear-gradient(217deg, #E7dee9 ,#FDCAF1  70.71%),
   linear-gradient(127deg, #dde0fa , #f0cbf6  70.71%),

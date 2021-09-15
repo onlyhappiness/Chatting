@@ -55,7 +55,7 @@ app.use(session({   // 세션
 
 ///////////////////////////////// page 관련 /////////////////////////////////
 app.set('view engine','ejs');
-app.use(express.static(__dirname + '/views/'));
+app.use(express.static(__dirname + '../views/'));
 
 ///////////////////////////////// passport 설정 /////////////////////////////////
 app.use(passport.initialize());
@@ -202,13 +202,13 @@ app.post('/auth/register', (req, res) => {
 
 app.get('/auth/login', (req, res) => {
   console.log('로그인 페이지로 이동합니다.');
-  app.use('/auth', express.static(__dirname + '/views/'));
+  app.use('/auth', express.static(__dirname + '../views/'));
   res.render('login');
 });
 
 app.get('/auth/register', (req, res) => {
   console.log('회원 가입 페이지에 접속합니다.');
-  app.use('/auth', express.static(__dirname + '/views/'));
+  app.use('/auth', express.static(__dirname + '../views/'));
   res.render('register');
 });
 

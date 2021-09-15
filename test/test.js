@@ -52,25 +52,10 @@ app.use(session({   // 세션
   })
 }));
 
-app.use('/welcome', express.static('/client/icons/'));
 
 ///////////////////////////////// page 관련 /////////////////////////////////
-app.set('views', __dirname + '/client/');
-// html을 ejs로 변환
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
-
-// express에서 css 적용
-app.use('/auth/css', express.static(__dirname + '/client/views/login/css/'));
-app.use('/css', express.static(__dirname + '/client/views/main/css/'));
-app.use('/auth/css', express.static(__dirname + '/client/views/register/css/'));
-// app.use('/css', express.static(__dirname + '/client/views/userlist/css'));
-
-// js 적용
-app.use('/auth/js', express.static(__dirname + '/client/views/login/js'));
-app.use('/js', express.static(__dirname + '/client/views/main/js'));
-app.use('/auth/js', express.static(__dirname + '/client/views/register/js'));
-// app.use('/js', express.static(__dirname + '/client/views/userlist/js'));
+app.set('view engine','ejs');
+app.use(express.static(__dirname + '/views/'));
 
 ///////////////////////////////// passport 설정 /////////////////////////////////
 app.use(passport.initialize());
@@ -80,13 +65,15 @@ app.use(passport.session());
 app.get("/auth/logout", (req, res) => {
   req.logout();
   req.session.save(() => {
+    
     res.redirect("/auth/login");
   });
 });
 
 app.get("/welcome", function (req, res) {
+  // app.use(express.static(__dirname + '/views/'));
   if (req.user && req.user.displayName) {
-    res.render('main/index.html', { displayName: req.user.displayName });
+    res.render('main', { displayName: req.user.displayName });
   } else {
     res.redirect('/auth/login')
   }
@@ -112,11 +99,14 @@ app.get("/welcome", function (req, res) {
 });
 ///////////////////////////////// landing page /////////////////////////////////
 app.get('/', (req, res) => {
-  if (req.user && req.user.displayName) {
-    res.render('main/index.html',{displayName: req.user.displayName});
-  } else {
-    res.redirect('/auth/login');
-  }
+  // app.use(express.static(__dirname + '/views/'));
+  res.render('landing');
+
+  // if (req.user && req.user.displayName) {
+  //   res.render('main/index.html',{displayName: req.user.displayName});
+  // } else {
+  //   res.redirect('/auth/login');
+  // }
 });
 
 
@@ -212,20 +202,20 @@ app.post('/auth/register', (req, res) => {
 
 app.get('/auth/login', (req, res) => {
   console.log('로그인 페이지로 이동합니다.');
-  res.render('login/index.html');
+  app.use('/auth', express.static(__dirname + '/views/'));
+  res.render('login');
 });
 
 app.get('/auth/register', (req, res) => {
   console.log('회원 가입 페이지에 접속합니다.');
-  res.render('register/index.html');
+  app.use('/auth', express.static(__dirname + '/views/'));
+  res.render('register');
 });
 
-app.get('/userlist', (req, res) => {
-  console.log('유저리스트로 이동합니다.');
-  res.render('userlist/index.html', {displayName: req.user.displayName, email: req.user.email});
-
-  
-});
+// app.get('/userlist', (req, res) => {
+//   console.log('유저리스트로 이동합니다.');
+//   res.render('userlist/index.html', {displayName: req.user.displayName, email: req.user.email});
+// });
 
 
 server.listen(port, () => {
