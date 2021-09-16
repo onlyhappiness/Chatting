@@ -188,9 +188,10 @@ app.post('/auth/register', (req, res) => {
             console.log(err);
             res.status(500);
           } else {
+            //alert('회원 가입을 축하합니다!')
             req.login(user, function (err) {
               req.session.save(function () {
-                res.redirect("/welcome");
+                res.redirect("/auth/login");
               });
             });
           }
