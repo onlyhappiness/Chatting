@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 1rem 5rem;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleBox {
+  width: 400px;
+}
+
+.main_title {
+  color: #6DF2C1;
+  font-size: 4rem;
+}
+
+.main_title span {
+  color: #A429D9;
+}
+
+.sub_title {
+  padding-top: 1rem;
+  font-size: 1.3rem;
+}
+
+#whatever {
+  background-image: url('../../images/landing/Whatever.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 100vh;
+  /* padding: 50px; */
+}
+
+#anywhere {
+  background-image: url('../../images/landing/anywhere.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 100vh;
+  /* padding: 50px; */
+}
+
+#anytime {
+  background-image: url('../../images/landing/anytime.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 100vh;
+  /* padding: 50px; */
+}
+
+button {
+  border: none;
+  color: white;
+  padding: 20px 40px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.register {
+  background: #6DF2C1;
+}
+
+.login {
+  background: #A429D9;
+}
+
+button a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: white;
+}

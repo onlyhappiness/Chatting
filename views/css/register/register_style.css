@@ -19,20 +19,25 @@ body {
           align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background: -webkit-gradient(linear, right top, left bottom, from(#BF4EA1), to(#fff));
-  background: linear-gradient(to bottom left, #BF4EA1, #fff);
+  background: -webkit-gradient(linear, left top, right bottom, from(#654ea3), to(#eaafc8));
+  background: linear-gradient(to bottom right, #654ea3, #eaafc8);
 }
 
 .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
+  width: 50%;
+  /* max-width: 330px; */
+  padding: 2rem 4rem;
   margin: auto;
-  border-radius: 5px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 #main_title {
   color: #F0F2F2;
+}
+
+#form_input {
+  margin-bottom: 20px;
 }
 
 .form-signin .form-floating:focus-within {
