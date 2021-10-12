@@ -1,0 +1,147 @@
+:root {
+  /* 단순히 나눈 것을 구분하기 위해 색깔을 넣었습니다. */
+  /* color */
+  --body-color: #F3F7FA;
+  --sidebar-color: #11101d;
+
+  /* --header-color: #ffffff; */
+  /* --main-color: #F0F2F9; */
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--body-color);
+}
+
+#sidebar {
+  background: var(--sidebar-color);
+}
+
+#container {
+  position: absolute;
+  top: 0;
+  left: 78px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  padding: 20px;
+  /* background: 
+    linear-gradient(217deg, #E7dee9 ,#FDCAF1  70.71%),
+  linear-gradient(127deg, #dde0fa , #f0cbf6  70.71%),
+  linear-gradient(336deg,#c5eee2 ,#f9d4f4  70.71%); */
+}
+
+#bars {
+  padding: 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* .sidebar.active #bars {
+  
+} */
+
+.sidebar.active ~ #container {
+  width: calc(100% - 240px);
+  left: 240px;
+}
+
+/* 미디어 쿼리 적용 */
+@media screen and (max-width: 767px){
+	.contents {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 2fr 2fr 1fr;
+    grid-template-areas: 
+    "hello"
+    "weather"
+    "time"
+    "todo"
+    "calendar";
+  }
+
+  /* 모바일 */
+  #sidebar {
+    display: none;
+  }
+
+  #container {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  #root.active #sidebar {
+    z-index: 1;
+    display: flex;
+    top: 10%;
+  }
+
+  .sidebar.active ~ #container {
+    width: 100%;
+    left: 0;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /* 테블릿 세로 */
+  .contents {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "hello calendar"
+    "weather calendar"
+    "time calendar"
+    "todo calendar ";
+  }
+
+  /* .calendar {
+    
+  } */
+
+  #sidebar {
+    display: none;
+  }
+
+  #container {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  #root.active #sidebar {
+    z-index: 1;
+    display: flex;
+    top: 10%;
+}
+
+  .sidebar.active ~ #container {
+    width: 100%;
+    left: 0;
+  }
+
+  .nav_list {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  /* 테블릿 가로 */
+  .contents {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "hello calendar"
+    "weather calendar"
+    "time calendar"
+    "todo calendar ";
+  }
+}

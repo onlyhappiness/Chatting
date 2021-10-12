@@ -1,0 +1,99 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to bottom right, #C4E0E5,#4CA1AF );
+  padding: 50px;
+}
+
+.container {
+  padding: 3rem 1rem;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  background-color: rgba( 255, 255, 255, 0.7 );
+  border-radius: 40px;
+  /* padding: 20px; */
+}
+
+.titleBox {
+  width: 400px;
+  margin: 30px;
+}
+
+.main_title {
+  color: #6DF2C1;
+  font-size: 4rem;
+}
+
+.main_title span {
+  color: #A429D9;
+}
+
+.sub_title {
+  padding-top: 1rem;
+  font-size: 1.3rem;
+}
+
+#whatever {
+  background-image: url('../../images/landing/Whatever.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 100vh;
+  /* border-radius: 20px; */
+  /* padding: 50px; */
+}
+
+#anywhere {
+  background-image: url('../../images/landing/anywhere.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 100vh;
+  /* border-radius: 20px; */
+
+  /* padding: 50px; */
+}
+
+#anytime {
+  background-image: url('../../images/landing/anytime.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 100vh;
+  /* border-radius: 50px; */
+  /* padding: 50px; */
+}
+
+button {
+  border: none;
+  color: white;
+  padding: 20px 40px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.register {
+  background: #6DF2C1;
+}
+
+.login {
+  background: #A429D9;
+}
+
+button a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: white;
+}
