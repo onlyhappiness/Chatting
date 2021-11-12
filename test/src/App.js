@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { 
+  BrowserRouter as Routes,
+  Switch, 
+  Route 
+} from 'react-router-dom'
+
+import './App.css'
+import MainPage from './components/view/MainPage/MainPage'
+import LoginPage from './components/view/LoginPage/LoginPage'
+import RegistetPage from './components/view/RegisterPage/RegistetPage'
+import Chatting from './components/view/Chatting/Chatting'
+import Calendar from './components/view/Calendar/Calendar'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={ MainPage } />
+          <Route exact path="/login" component={ LoginPage } />
+          <Route exact path="/register" component={ RegistetPage } />
+          <Route exact path="/chat" component={ Chatting } />
+          <Route exact path="/calendar" component={ Calendar } />
+
+        </Switch>
+      </div>
+    </Routes>
+  )
 }
 
-export default App;
+export default App
